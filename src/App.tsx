@@ -26,9 +26,7 @@ export default function App() {
         <Switch checked={checked} onChange={() => setChecked(!checked)} />
         <Typography>Track</Typography>
       </Flex>
-      <Container>
-        {checked ? <Tracks /> : <Tracks wrapperType="audiobook" />}
-      </Container>
+      {checked ? <Tracks /> : <Tracks wrapperType="audiobook" />}
     </>
   );
 }

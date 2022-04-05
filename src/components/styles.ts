@@ -18,6 +18,7 @@ export const Container = styled.div`
   margin: auto;
   gap: 10px;
   text-align: center;
+  width: 100%;
 `;
 
 export const Content = styled.div`
