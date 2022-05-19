@@ -1,42 +1,41 @@
 import React, { useState } from "react";
+import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getMediaFetch } from "../redux/mediaSlice";
 import { Container } from "./styles";
+import filterBySearch from "../utils/filterBySearch";
 import Track from "./Track";
 
 const Tracks = ({ wrapperType = "track" }: any) => {
   const { media } = useSelector((state: any) => state.data);
   const [searchText, setSearchText]: any = useState("");
-
-  const filterBySearch = media.filter((el: any) => {
-    const { trackName = "", artistName = "" } = el;
-
-    const filterByTrack = trackName
-      .toLowerCase()
-      .includes(searchText.toLowerCase());
-
-    const filterByArtist = artistName
-      .toLowerCase()
-      .includes(searchText.toLowerCase());
-
-    if (filterByTrack || filterByArtist) {
-      return true;
-    }
-
-    return false;
-  });
+  const dispatch = useDispatch();
 
   return (
     <Container>
-      <Container style={{ margin: "auto", width: "50%" }}>
+      <Container style={{ display: "flex", margin: "auto", width: "50%" }}>
         <TextField
           label="Search"
-          onChange={(event) => setSearchText(event.target.value)}
+          onChange={(event) => {
+            setSearchText(event.target.value);
+          }}
           sx={{ width: 1 }}
+          value={searchText}
         />
+        <Button
+          disabled={!searchText.length}
+          onClick={() => {
+            dispatch(getMediaFetch(searchText));
+            setSearchText("");
+          }}
+          sx={{ width: 1 }}
+        >
+          Search
+        </Button>
       </Container>
       <Container>
-        {filterBySearch
+        {filterBySearch(media, searchText)
           .filter((el: any) => el.wrapperType === wrapperType)
           .map((el: any, i: number) => (
             <Track key={i} track={el} />

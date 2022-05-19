@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Switch, Typography } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { getMediaFetch } from "./redux/mediaSlice";
-import { Container, Flex } from "./components/styles";
+import { useSelector } from "react-redux";
+import { Flex } from "./components/styles";
 import Tracks from "./components/Tracks";
 import TrackDetails from "./components/TrackDetails";
 
 export default function App() {
   const [checked, setChecked] = useState(true);
   const { track } = useSelector((state: any) => state.details);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getMediaFetch());
-  }, [dispatch]);
 
   if (track) {
     return <TrackDetails track={track} />;

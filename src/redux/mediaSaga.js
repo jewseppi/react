@@ -2,10 +2,10 @@ import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { getMediaSuccess } from "./mediaSlice";
 
-function* workGetMediaFetch() {
+function* workGetMediaFetch({ payload }) {
   const result = yield call(
     axios.get,
-    "http://itunes.apple.com/search?term=Beatles"
+    `http://itunes.apple.com/search?term=${payload}`
   );
   const albums = yield result.data;
   yield put(getMediaSuccess(albums));

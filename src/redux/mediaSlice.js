@@ -7,7 +7,7 @@ export const mediaSlice = createSlice({
     isLoading: false,
   },
   reducers: {
-    getMediaFetch: (state) => {
+    getMediaFetch: (state, _) => {
       state.isLoading = true;
     },
     getMediaSuccess: (state, action) => {
@@ -24,7 +24,6 @@ export const mediaSlice = createSlice({
         wrapperType: el.wrapperType,
       }));
       state.media = tracks;
-      console.log(tracks);
       state.isLoading = false;
     },
     getMediaFailure: (state) => {
