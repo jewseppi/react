@@ -1,17 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useDispatch } from "react-redux";
-import { getMediaFetch } from "../redux/allMediaSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getMediaFetch, updateSearchFilter } from "../redux/allMediaSlice";
 import { Container } from "./styles";
 
-const SearchBar = ({
-  searchText,
-  setSearchText,
-}: {
-  searchText: string;
-  setSearchText: Dispatch<SetStateAction<string>>;
-}): any => {
+const SearchBar = () => {
+  const { searchValue = "" } = useSelector((state: any) => state.allMedia);
   const dispatch = useDispatch();
 
   return (
@@ -19,16 +14,15 @@ const SearchBar = ({
       <TextField
         label="Search"
         onChange={(event) => {
-          setSearchText(event.target.value);
+          dispatch(updateSearchFilter(event.target.value));
         }}
         sx={{ width: 1 }}
-        value={searchText}
+        value={searchValue}
       />
       <Button
-        disabled={!searchText.length}
+        disabled={!searchValue.length}
         onClick={() => {
-          dispatch(getMediaFetch(searchText));
-          setSearchText("");
+          dispatch(getMediaFetch(searchValue));
         }}
         sx={{ width: 1 }}
       >

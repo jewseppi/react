@@ -1,10 +1,13 @@
 import React from "react";
-import filterBySearch from "../utils/filterBySearch";
+import { useSelector } from "react-redux";
 import Track from "./Track";
 
-const Tracks = ({ media, searchText, wrapperType }: any) =>
-  filterBySearch(media, searchText)
-    .filter((el: any) => el.wrapperType === wrapperType)
-    .map((el: any, i: number) => <Track key={i} track={el} />);
+const Tracks = ({ tracks, wrapperType }: any) => {
+  // const { search: tracks } = useSelector((state: any) => state.allMedia);
+
+  return (tracks || []).map((el: any, i: number) => (
+    <Track key={i} track={el} />
+  ));
+};
 
 export default Tracks;

@@ -1,22 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import { Container } from "./styles";
 import Tracks from "./Tracks";
 import SearchBar from "./SearchBar";
 
-const TracksPanel = ({ wrapperType = "track" }: any) => {
-  const { media } = useSelector((state: any) => state.allMedia);
-  const [searchText, setSearchText]: any = useState("");
-  const dispatch = useDispatch();
-
+const TracksPanel = ({ wrapperType = "track" }: { wrapperType: string }) => {
+  const { media: tracks } = useSelector((state: any) => state.allMedia);
   return (
     <Container>
-      <SearchBar {...{ searchText, setSearchText }} />
+      <SearchBar />
       <Container>
-        <Tracks {...{ media, searchText, wrapperType }} />
+        <Tracks {...{ tracks, wrapperType }} />
       </Container>
     </Container>
   );
 };
-
 export default TracksPanel;

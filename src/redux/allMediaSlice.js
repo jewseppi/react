@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { startOfQuarter } from "date-fns";
+import { filterBySearch } from "../utils/filterBySearch";
 
 export const allMediaSlice = createSlice({
   name: "allMedia",
   initialState: {
     media: [],
     isLoading: false,
+    search: [],
   },
   reducers: {
     getMediaFetch: (state, _) => {
@@ -29,10 +32,20 @@ export const allMediaSlice = createSlice({
     getMediaFailure: (state) => {
       state.isLoading = false;
     },
+    updateSearchFilter: (state, { payload }) => {
+      state.searchValue = payload;
+      state.media = filterBySearch(state.media, payload).filter(
+        (el) => el.wrapperType === "track"
+      );
+    },
   },
 });
 
-export const { getMediaFetch, getMediaSuccess, getMediaFailure } =
-  allMediaSlice.actions;
+export const {
+  getMediaFetch,
+  getMediaSuccess,
+  getMediaFailure,
+  updateSearchFilter,
+} = allMediaSlice.actions;
 
 export default allMediaSlice.reducer;
