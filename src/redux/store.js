@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import mediaReducer from "./mediaSlice";
+import allMediaReducer from "./allMediaSlice";
 import mediaSaga from "./mediaSaga";
-import trackReducer from "./trackSlice";
+import mediaReducer from "./mediaSlice";
 
 export const saga = createSagaMiddleware();
 const store = configureStore({
   reducer: {
-    data: mediaReducer,
-    details: trackReducer,
+    allMedia: allMediaReducer,
+    media: mediaReducer,
   },
   middleware: [saga],
 });

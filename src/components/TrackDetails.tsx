@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { clearTrackDetails } from "../redux/trackSlice";
+import { clearTrackDetails } from "../redux/mediaSlice";
 import {
   Body,
   BodyDetails,

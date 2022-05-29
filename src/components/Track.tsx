@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getTrackDetails } from "../redux/trackSlice";
+import { getTrackDetails } from "../redux/mediaSlice";
 import { Body, BodyDetails as Details, Content, Image, Title } from "./styles";
 import formatDate from "../utils/formatDate";
 import formatPrice from "../utils/formatPrice";

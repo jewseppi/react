@@ -1,6 +1,6 @@
 import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getMediaSuccess } from "./mediaSlice";
+import { getMediaSuccess } from "./allMediaSlice";
 
 function* workGetMediaFetch({ payload }) {
   const result = yield call(
@@ -12,7 +12,7 @@ function* workGetMediaFetch({ payload }) {
 }
 
 function* mediaSaga() {
-  yield takeEvery("media/getMediaFetch", workGetMediaFetch);
+  yield takeEvery("allMedia/getMediaFetch", workGetMediaFetch);
 }
 
 export default mediaSaga;

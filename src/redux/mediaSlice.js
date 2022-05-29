@@ -2,37 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const mediaSlice = createSlice({
   name: "media",
-  initialState: {
-    media: [],
-    isLoading: false,
-  },
+  initialState: {},
   reducers: {
-    getMediaFetch: (state, _) => {
-      state.isLoading = true;
+    getTrackDetails: (state, action) => {
+      state.track = action.payload;
     },
-    getMediaSuccess: (state, action) => {
-      const media = action.payload.results;
-      const tracks = media.map((el) => ({
-        artistName: el.artistName,
-        artworkUrl100: el.artworkUrl100,
-        description: el.longDescription || el.description,
-        kind: el.kind,
-        trackName: el.trackName,
-        trackPrice: el.trackPrice,
-        trackTimeMillis: el.trackTimeMillis,
-        releaseDate: el.releaseDate,
-        wrapperType: el.wrapperType,
-      }));
-      state.media = tracks;
-      state.isLoading = false;
-    },
-    getMediaFailure: (state) => {
-      state.isLoading = false;
+    clearTrackDetails: (state) => {
+      state.track = null;
     },
   },
 });
 
-export const { getMediaFetch, getMediaSuccess, getMediaFailure } =
-  mediaSlice.actions;
+export const { getTrackDetails, clearTrackDetails } = mediaSlice.actions;
 
 export default mediaSlice.reducer;

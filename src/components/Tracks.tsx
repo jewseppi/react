@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { getMediaFetch } from "../redux/mediaSlice";
+import { getMediaFetch } from "../redux/allMediaSlice";
 import { Container } from "./styles";
 import filterBySearch from "../utils/filterBySearch";
 import Track from "./Track";
 
 const Tracks = ({ wrapperType = "track" }: any) => {
-  const { media } = useSelector((state: any) => state.data);
+  const { media } = useSelector((state: any) => state.allMedia);
   const [searchText, setSearchText]: any = useState("");
   const dispatch = useDispatch();
 

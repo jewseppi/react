@@ -7,8 +7,8 @@ import TrackDetails from "./components/TrackDetails";
 
 export default function App() {
   const [checked, setChecked] = useState(true);
-  const { track } = useSelector((state: any) => state.details);
-
+  const { track } = useSelector((state: any) => state.media);
+  console.log(";", track);
   if (track) {
     return <TrackDetails track={track} />;
   }
